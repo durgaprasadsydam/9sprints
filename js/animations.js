@@ -386,13 +386,11 @@
       if (im) tl.fromTo(im, { scale: 1.25 }, { scale: 1, duration: 1.4, ease: EXPO }, 0);
     });
 
-    // data-about-reveal: the frame opens up from an inset rounded window while the photo scales down and drifts
+    // data-about-reveal: frame grows 0.8 -> 1 and its corners tighten 48 -> 24px while the media drifts
     $$("[data-about-reveal]").forEach(function (frame) {
       var im = $(".about-img", frame);
-      gsap.timeline({ scrollTrigger: { trigger: frame, start: "top 92%", end: "top 22%", scrub: 0.6 } })
-        .fromTo(frame, { clipPath: "inset(16% 14% 16% 14% round 56px)" }, { clipPath: "inset(0% 0% 0% 0% round 40px)", ease: "none" }, 0)
-        .fromTo(im, { scale: 1.35 }, { scale: 1, ease: "none" }, 0);
-      gsap.fromTo(im, { yPercent: -9 }, { yPercent: 9, ease: "none", scrollTrigger: { trigger: frame, start: "top bottom", end: "bottom top", scrub: true } });
+      gsap.fromTo(frame, { scale: 0.8, borderRadius: 48 }, { scale: 1, borderRadius: 24, ease: "none", scrollTrigger: { trigger: frame, start: "top bottom", end: "center center", scrub: true } });
+      gsap.fromTo(im, { yPercent: -10 }, { yPercent: 10, ease: "none", scrollTrigger: { trigger: frame, start: "top bottom", end: "bottom top", scrub: true } });
     });
 
     // data-parallax

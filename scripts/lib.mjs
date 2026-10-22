@@ -55,7 +55,7 @@ export const SERVICES = [
     blurb: "Vetted engineers on contract, hire or dedicated teams.",
     desc: "Vetted developers, engineers and project leaders ready to join your team on contract, contract-to-hire or permanent roles.",
     tags: ["Contract", "Contract-to-hire", "Permanent", "Dedicated teams"],
-    img: "home/it-staffing-recruitment.webp",
+    img: "home/it-staffing-recruitment.jpg",
   },
 ];
 
@@ -178,8 +178,7 @@ const head = (p) => {
 <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap" rel="stylesheet">
-<link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Noto+Sans:wght@100..900&display=swap" rel="stylesheet">
 <script>
 (function(){var d=document.documentElement;d.classList.add('js');
 var t=null;try{t=localStorage.getItem('9s-theme');}catch(e){}if(t!=='light'&&t!=='dark'){try{t=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}catch(e){t='dark';}}d.setAttribute('data-theme',t);
@@ -196,64 +195,49 @@ ${p.ld ? `<script type="application/ld+json">${JSON.stringify(p.ld)}</script>` :
 </head>`;
 };
 
-const megaMenu = () => `
-<div class="mega" id="mega" role="region" aria-label="Services menu">
-  <div class="wrap"><div class="mega-grid">
-    ${SERVICES.map(
-      (s) => `<a href="${s.slug}.html" class="mega-item" style="--service:${s.color}" data-mega-item>
-      <span class="mega-ico">${icon(s.icon)}</span>
-      <strong class="font-display text-lg leading-tight tracking-tight">${s.title}</strong>
-      <span class="small text-dim">${s.blurb}</span>
-      <span class="small font-bold mt-auto inline-flex items-center gap-1 text-hl">Learn more ${icon("arrow", "w-4 h-4")}</span>
-    </a>`
-    ).join("")}
-    <div class="mega-promo" data-mega-item>
-      <div><p class="label !text-[#011a39]/70">Fast start</p>
-      <p class="font-display text-2xl leading-tight tracking-tight mt-2">Need a team in 2 weeks?</p></div>
-      <a href="contact.html" class="inline-flex items-center gap-2 font-bold">Talk to us ${icon("arrow", "w-5 h-5")}</a>
-    </div>
-  </div></div>
-</div>`;
-
 const header = (key) => `
 <a href="#main" class="sr-only-focus btn btn-accent z-[999] left-4 top-4">Skip to content</a>
 <header class="hdr" id="hdr">
   <div class="wrap hdr-inner">
     ${logo()}
-    <nav class="hidden lg:flex items-center gap-1" aria-label="Primary">
-      ${NAV.map((n) =>
-        n.mega
-          ? `<button type="button" class="nav-link" id="svc-btn" aria-expanded="false" aria-controls="mega" ${
-              key === "services" ? 'aria-current="page"' : ""
-            }>${n.label} ${icon("down", "w-4 h-4")}</button>`
-          : `<a class="nav-link" href="${n.href}"${key === n.key ? ' aria-current="page"' : ""}>${n.label}</a>`
-      ).join("")}
-    </nav>
     <div class="flex items-center gap-2 sm:gap-3">
       <button type="button" class="icon-btn" id="theme-toggle" aria-label="Toggle light and dark theme">
         ${icon("moon", "theme-ico-moon")}${icon("sun", "theme-ico-sun")}
       </button>
-      <span class="hidden sm:inline-flex">${btn("Start a Project", "contact.html", "accent", "sm")}</span>
-      <button type="button" class="icon-btn burger lg:hidden" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mm"><i></i><i></i></button>
+      <a href="contact.html" class="btn btn-accent btn-sm hidden sm:inline-flex" data-magnetic><span class="btn-label"><span>Say Hello</span><span aria-hidden="true">Say Hello</span></span>${icon("arrow", "btn-arrow")}</a>
+      <button type="button" class="icon-btn burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mm"><i></i><i></i></button>
     </div>
   </div>
-  ${megaMenu()}
 </header>
-<div class="mm" id="mm" aria-hidden="true">
-  <nav aria-label="Mobile">
-    <ul>
-      ${NAV.map((n) =>
-        n.mega
-          ? `<li class="mm-row"><div data-mm-item>
-              <button type="button" class="mm-link w-full text-left flex items-center justify-between" id="mm-svc" aria-expanded="false" aria-controls="mm-sub">${n.label} ${icon("down", "w-7 h-7")}</button>
-              <div class="mm-sub" id="mm-sub">${SERVICES.map((s) => `<a href="${s.slug}.html">${s.title}</a>`).join("")}<a href="services.html">All services</a></div></div></li>`
-          : `<li class="mm-row"><a class="mm-link" data-mm-item href="${n.href}">${n.label}</a></li>`
-      ).join("")}
-    </ul>
-  </nav>
-  <div class="flex flex-wrap items-end justify-between gap-6 text-[#c9c9d1]">
-    <div><a href="mailto:${SITE.email}" class="block text-xl text-white">${SITE.email}</a><span class="small">${SITE.office}</span></div>
-    <div class="flex gap-4 small font-bold"><a href="#">LinkedIn</a><a href="#">X</a><a href="#">GitHub</a><a href="#">Instagram</a></div>
+<div class="mm" id="mm" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
+  <span class="mm-bg-glow" aria-hidden="true"></span>
+  <div class="mm-top">
+    <p class="mm-tag"><span class="mm-dot" aria-hidden="true"></span><span class="mm-mask"><span data-mm-tag>MENU</span></span></p>
+    <button type="button" class="mm-close" id="mm-close" aria-label="Close menu"><i></i><i></i></button>
+  </div>
+  <div class="mm-body">
+    <nav aria-label="Menu">
+      <ul class="mm-list" data-lenis-prevent>
+        ${NAV.map((n) =>
+          n.mega
+            ? `<li class="mm-row">
+              <button type="button" class="mm-link mm-toggle" id="mm-svc" aria-expanded="false" aria-controls="mm-sub"><span class="mm-mask"><span data-mm-item>${n.label}</span></span><span class="mm-plus" aria-hidden="true"></span></button>
+              <div class="mm-sub" id="mm-sub"><div>${SERVICES.map((s) => `<span class="mm-mask"><a href="${s.slug}.html" data-mm-sub>${s.title}</a></span>`).join("")}<span class="mm-mask"><a href="services.html" data-mm-sub>All services</a></span></div></div></li>`
+            : `<li class="mm-row"><a class="mm-link${key === n.key ? " is-current" : ""}" href="${n.href}"><span class="mm-mask"><span data-mm-item>${n.label}</span></span></a></li>`
+        ).join("")}
+      </ul>
+    </nav>
+    <aside class="mm-aside">
+      <p class="mm-note"><span class="mm-mask"><span data-mm-note><strong>Got an idea? We'll ship it.</strong></span></span><span class="mm-mask"><span data-mm-note>Tell us what you're building and a</span></span><span class="mm-mask"><span data-mm-note>team can be sprinting in 9 days.</span></span></p>
+      <a href="contact.html" class="mm-card" data-cursor="View">
+        <video class="mm-video" muted loop playsinline preload="none" poster="assets/img/about-us.jpg" aria-hidden="true" tabindex="-1"><source src="assets/img/about-video.webm" type="video/webm"></video>
+        <span class="mm-card-cap">Start a project <span class="mm-card-ico">${icon("arrow", "w-5 h-5")}</span></span>
+      </a>
+    </aside>
+  </div>
+  <div class="mm-foot">
+    <a href="mailto:${SITE.email}">${SITE.email}</a>
+    <span>© 2026 9Sprints</span>
   </div>
 </div>`;
 
@@ -338,7 +322,7 @@ export const faq = (items) => `
 </div>`;
 
 export const ctaBlock = (opts = {}) => `
-<section class="sec !pt-0" aria-labelledby="cta-h">
+<section class="sec !pt-[clamp(64px,9vw,140px)] !pb-[clamp(24px,3vw,48px)]" aria-labelledby="cta-h">
   <div class="wrap">
     <div class="cta-panel" data-cta>
       <div class="cta-ripples" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>

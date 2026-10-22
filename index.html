@@ -17,8 +17,7 @@
 <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap" rel="stylesheet">
-<link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Noto+Sans:wght@100..900&display=swap" rel="stylesheet">
 <script>
 (function(){var d=document.documentElement;d.classList.add('js');
 var t=null;try{t=localStorage.getItem('9s-theme');}catch(e){}if(t!=='light'&&t!=='dark'){try{t=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}catch(e){t='dark';}}d.setAttribute('data-theme',t);
@@ -43,60 +42,40 @@ try{if(!sessionStorage.getItem('9s-pl')&&!d.classList.contains('reduced'))d.clas
 <header class="hdr" id="hdr">
   <div class="wrap hdr-inner">
     <a href="index.html" class="logo " aria-label="9Sprints home"><img class="logo-img logo-on-light" src="assets/logo/logo.webp" alt="9Sprints" width="900" height="595"><img class="logo-img logo-on-dark" src="assets/logo/logo-white.webp" alt="" width="900" height="595" aria-hidden="true"></a>
-    <nav class="hidden lg:flex items-center gap-1" aria-label="Primary">
-      <a class="nav-link" href="index.html" aria-current="page">Home</a><button type="button" class="nav-link" id="svc-btn" aria-expanded="false" aria-controls="mega" >Services <svg class="w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-down"/></svg></button><a class="nav-link" href="ai-solutions.html">AI Solutions</a><a class="nav-link" href="industries.html">Industries</a><a class="nav-link" href="about.html">About Us</a><a class="nav-link" href="careers.html">Careers</a><a class="nav-link" href="contact.html">Contact</a>
-    </nav>
     <div class="flex items-center gap-2 sm:gap-3">
       <button type="button" class="icon-btn" id="theme-toggle" aria-label="Toggle light and dark theme">
         <svg class="theme-ico-moon" aria-hidden="true" focusable="false"><use href="#i-moon"/></svg><svg class="theme-ico-sun" aria-hidden="true" focusable="false"><use href="#i-sun"/></svg>
       </button>
-      <span class="hidden sm:inline-flex"><a href="contact.html" class="btn btn-accent btn-sm" data-magnetic ><span class="btn-label"><span>Start a Project</span><span aria-hidden="true">Start a Project</span></span></a></span>
-      <button type="button" class="icon-btn burger lg:hidden" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mm"><i></i><i></i></button>
+      <a href="contact.html" class="btn btn-accent btn-sm hidden sm:inline-flex" data-magnetic><span class="btn-label"><span>Say Hello</span><span aria-hidden="true">Say Hello</span></span><svg class="btn-arrow" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+      <button type="button" class="icon-btn burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mm"><i></i><i></i></button>
     </div>
   </div>
-  
-<div class="mega" id="mega" role="region" aria-label="Services menu">
-  <div class="wrap"><div class="mega-grid">
-    <a href="software-product-development.html" class="mega-item" style="--service:#0252F1" data-mega-item>
-      <span class="mega-ico"><svg class="" aria-hidden="true" focusable="false"><use href="#i-code"/></svg></span>
-      <strong class="font-display text-lg leading-tight tracking-tight">Software & Product Development</strong>
-      <span class="small text-dim">Web, mobile and cloud products engineered to scale.</span>
-      <span class="small font-bold mt-auto inline-flex items-center gap-1 text-hl">Learn more <svg class="w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></span>
-    </a><a href="project-program-management.html" class="mega-item" style="--service:#02ABFE" data-mega-item>
-      <span class="mega-ico"><svg class="" aria-hidden="true" focusable="false"><use href="#i-kanban"/></svg></span>
-      <strong class="font-display text-lg leading-tight tracking-tight">Project & Program Management</strong>
-      <span class="small text-dim">Certified PMs who bring structure and visibility.</span>
-      <span class="small font-bold mt-auto inline-flex items-center gap-1 text-hl">Learn more <svg class="w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></span>
-    </a><a href="ai-solutions.html" class="mega-item" style="--service:#03D1F6" data-mega-item>
-      <span class="mega-ico"><svg class="" aria-hidden="true" focusable="false"><use href="#i-ai"/></svg></span>
-      <strong class="font-display text-lg leading-tight tracking-tight">AI Solutions</strong>
-      <span class="small text-dim">LLM apps, automation and ML that ship to production.</span>
-      <span class="small font-bold mt-auto inline-flex items-center gap-1 text-hl">Learn more <svg class="w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></span>
-    </a><a href="it-staffing-recruitment.html" class="mega-item" style="--service:#34DC6D" data-mega-item>
-      <span class="mega-ico"><svg class="" aria-hidden="true" focusable="false"><use href="#i-users"/></svg></span>
-      <strong class="font-display text-lg leading-tight tracking-tight">IT Staffing & Recruitment</strong>
-      <span class="small text-dim">Vetted engineers on contract, hire or dedicated teams.</span>
-      <span class="small font-bold mt-auto inline-flex items-center gap-1 text-hl">Learn more <svg class="w-4 h-4" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></span>
-    </a>
-    <div class="mega-promo" data-mega-item>
-      <div><p class="label !text-[#011a39]/70">Fast start</p>
-      <p class="font-display text-2xl leading-tight tracking-tight mt-2">Need a team in 2 weeks?</p></div>
-      <a href="contact.html" class="inline-flex items-center gap-2 font-bold">Talk to us <svg class="w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
-    </div>
-  </div></div>
-</div>
 </header>
-<div class="mm" id="mm" aria-hidden="true">
-  <nav aria-label="Mobile">
-    <ul>
-      <li class="mm-row"><a class="mm-link" data-mm-item href="index.html">Home</a></li><li class="mm-row"><div data-mm-item>
-              <button type="button" class="mm-link w-full text-left flex items-center justify-between" id="mm-svc" aria-expanded="false" aria-controls="mm-sub">Services <svg class="w-7 h-7" aria-hidden="true" focusable="false"><use href="#i-down"/></svg></button>
-              <div class="mm-sub" id="mm-sub"><a href="software-product-development.html">Software & Product Development</a><a href="project-program-management.html">Project & Program Management</a><a href="ai-solutions.html">AI Solutions</a><a href="it-staffing-recruitment.html">IT Staffing & Recruitment</a><a href="services.html">All services</a></div></div></li><li class="mm-row"><a class="mm-link" data-mm-item href="ai-solutions.html">AI Solutions</a></li><li class="mm-row"><a class="mm-link" data-mm-item href="industries.html">Industries</a></li><li class="mm-row"><a class="mm-link" data-mm-item href="about.html">About Us</a></li><li class="mm-row"><a class="mm-link" data-mm-item href="careers.html">Careers</a></li><li class="mm-row"><a class="mm-link" data-mm-item href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-  <div class="flex flex-wrap items-end justify-between gap-6 text-[#c9c9d1]">
-    <div><a href="mailto:hello@9sprints.com" class="block text-xl text-white">hello@9sprints.com</a><span class="small">Hyderabad, India</span></div>
-    <div class="flex gap-4 small font-bold"><a href="#">LinkedIn</a><a href="#">X</a><a href="#">GitHub</a><a href="#">Instagram</a></div>
+<div class="mm" id="mm" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
+  <span class="mm-bg-glow" aria-hidden="true"></span>
+  <div class="mm-top">
+    <p class="mm-tag"><span class="mm-dot" aria-hidden="true"></span><span class="mm-mask"><span data-mm-tag>MENU</span></span></p>
+    <button type="button" class="mm-close" id="mm-close" aria-label="Close menu"><i></i><i></i></button>
+  </div>
+  <div class="mm-body">
+    <nav aria-label="Menu">
+      <ul class="mm-list" data-lenis-prevent>
+        <li class="mm-row"><a class="mm-link is-current" href="index.html"><span class="mm-mask"><span data-mm-item>Home</span></span></a></li><li class="mm-row">
+              <button type="button" class="mm-link mm-toggle" id="mm-svc" aria-expanded="false" aria-controls="mm-sub"><span class="mm-mask"><span data-mm-item>Services</span></span><span class="mm-plus" aria-hidden="true"></span></button>
+              <div class="mm-sub" id="mm-sub"><div><span class="mm-mask"><a href="software-product-development.html" data-mm-sub>Software & Product Development</a></span><span class="mm-mask"><a href="project-program-management.html" data-mm-sub>Project & Program Management</a></span><span class="mm-mask"><a href="ai-solutions.html" data-mm-sub>AI Solutions</a></span><span class="mm-mask"><a href="it-staffing-recruitment.html" data-mm-sub>IT Staffing & Recruitment</a></span><span class="mm-mask"><a href="services.html" data-mm-sub>All services</a></span></div></div></li><li class="mm-row"><a class="mm-link" href="ai-solutions.html"><span class="mm-mask"><span data-mm-item>AI Solutions</span></span></a></li><li class="mm-row"><a class="mm-link" href="industries.html"><span class="mm-mask"><span data-mm-item>Industries</span></span></a></li><li class="mm-row"><a class="mm-link" href="about.html"><span class="mm-mask"><span data-mm-item>About Us</span></span></a></li><li class="mm-row"><a class="mm-link" href="careers.html"><span class="mm-mask"><span data-mm-item>Careers</span></span></a></li><li class="mm-row"><a class="mm-link" href="contact.html"><span class="mm-mask"><span data-mm-item>Contact</span></span></a></li>
+      </ul>
+    </nav>
+    <aside class="mm-aside">
+      <p class="mm-note"><span class="mm-mask"><span data-mm-note><strong>Got an idea? We'll ship it.</strong></span></span><span class="mm-mask"><span data-mm-note>Tell us what you're building and a</span></span><span class="mm-mask"><span data-mm-note>team can be sprinting in 9 days.</span></span></p>
+      <a href="contact.html" class="mm-card" data-cursor="View">
+        <video class="mm-video" muted loop playsinline preload="none" poster="assets/img/about-us.jpg" aria-hidden="true" tabindex="-1"><source src="assets/img/about-video.webm" type="video/webm"></video>
+        <span class="mm-card-cap">Start a project <span class="mm-card-ico"><svg class="w-5 h-5" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></span></span>
+      </a>
+    </aside>
+  </div>
+  <div class="mm-foot">
+    <a href="mailto:hello@9sprints.com">hello@9sprints.com</a>
+    <span>© 2026 9Sprints</span>
   </div>
 </div>
 <main id="main">
@@ -105,7 +84,7 @@ try{if(!sessionStorage.getItem('9s-pl')&&!d.classList.contains('reduced'))d.clas
 <section class="hero" id="hero" aria-labelledby="hero-h">
   <div class="mesh" data-hero-bg></div><div class="grid-lines" data-hero-bg></div>
   <div class="wrap hero-main" data-hero-content>
-    <div class="obj" style="left:2%;top:6%;width:clamp(90px,12vw,210px)" data-tile="0.05"><img class="obj-in obj-img" src="assets/img/home/launch.webp" alt="" width="400" height="400" decoding="async"></div>
+    <div class="obj" style="left:12%;bottom:4%;width:clamp(64px,7vw,124px)" data-tile="0.05"><img class="obj-in obj-img" src="assets/img/home/plan.webp" alt="" width="400" height="400" decoding="async"></div>
     <div class="obj" style="right:6%;bottom:3%;width:clamp(76px,9vw,165px)" data-tile="-0.04"><img class="obj-in obj-img" src="assets/img/home/scale.webp" alt="" width="400" height="400" decoding="async"></div>
     <div class="hero-copy">
       <h1 class="h1" id="hero-h">
@@ -149,7 +128,7 @@ try{if(!sessionStorage.getItem('9s-pl')&&!d.classList.contains('reduced'))d.clas
 <section class="sec" aria-labelledby="intro-h">
   <div class="wrap">
     <p class="label mb-8" data-reveal id="intro-h">Who we are</p>
-    <p class="font-display text-[clamp(1.6rem,3.6vw,3.75rem)] leading-[1.15] tracking-tight max-w-[28ch] sm:max-w-[34ch]" data-scrub-words>9Sprints is a technology partner for companies that need to ship. We bring engineering, delivery leadership, applied AI and the right people together — and run it all in short, measurable sprints.</p>
+    <p class="font-display text-[28px] md:text-[40px] leading-[1.25] tracking-tight max-w-[34ch] md:max-w-[42ch]" data-scrub-words>9Sprints is a technology partner for companies that need to ship. We bring engineering, delivery leadership, applied AI and the right people together and run it all in short, measurable sprints.</p>
     <div class="bento-grid" data-reveal-stagger>
       <article class="bn bn-a">
         <img class="bn-img bn-star" src="assets/img/home/star-icon.webp" alt="" width="800" height="800" loading="lazy" decoding="async">
@@ -225,7 +204,7 @@ try{if(!sessionStorage.getItem('9s-pl')&&!d.classList.contains('reduced'))d.clas
         <p class="svc-cap"><strong>AI Solutions</strong> Applied AI that earns its place in your workflow.</p>
       </a><a href="it-staffing-recruitment.html" class="svc-item" style="--service:#34DC6D" data-cursor="View">
         <div class="svc-media" data-img-reveal>
-          <img src="assets/img/home/it-staffing-recruitment.webp" alt="Placeholder illustration for IT Staffing & Recruitment" width="760" height="640" loading="lazy" decoding="async">
+          <img src="assets/img/home/it-staffing-recruitment.jpg" alt="Placeholder illustration for IT Staffing & Recruitment" width="760" height="640" loading="lazy" decoding="async">
           <ul class="svc-tags" aria-label="Capabilities"><li>Contract</li><li>Contract-to-hire</li><li>Permanent</li><li>Dedicated teams</li></ul>
         </div>
         <p class="svc-cap"><strong>IT Staffing & Recruitment</strong> The right engineers, right when you need them.</p>
@@ -236,7 +215,7 @@ try{if(!sessionStorage.getItem('9s-pl')&&!d.classList.contains('reduced'))d.clas
 
 <!-- PROCESS -->
 
-<section class="sec" id="sprint-model" aria-labelledby="sprint-model-h">
+<section class="pl-sec" id="sprint-model" aria-labelledby="sprint-model-h">
   <div class="wrap">
     <div class="pl-head">
       <div>
@@ -278,7 +257,7 @@ try{if(!sessionStorage.getItem('9s-pl')&&!d.classList.contains('reduced'))d.clas
 </section>
 
 <!-- AI SPOTLIGHT -->
-<section class="sec" aria-labelledby="ai-h">
+<section class="sec !pt-[clamp(24px,3vw,48px)]" aria-labelledby="ai-h">
   <div class="wrap">
     <div class="ai-card grid lg:grid-cols-2 gap-12 items-center" data-reveal>
       <div>
@@ -361,7 +340,7 @@ try{if(!sessionStorage.getItem('9s-pl')&&!d.classList.contains('reduced'))d.clas
 </section>
 
 
-<section class="sec !pt-0" aria-labelledby="cta-h">
+<section class="sec !pt-[clamp(64px,9vw,140px)] !pb-[clamp(24px,3vw,48px)]" aria-labelledby="cta-h">
   <div class="wrap">
     <div class="cta-panel" data-cta>
       <div class="cta-ripples" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>

@@ -17,7 +17,6 @@ const vendor = [
   ["lenis/dist/lenis.min.js", "js/vendor/lenis.min.js"],
   ["swiper/swiper-bundle.min.js", "js/vendor/swiper-bundle.min.js"],
   ["swiper/swiper-bundle.min.css", "dist/swiper.min.css"],
-  ["@fontsource-variable/inter/files/inter-latin-wght-normal.woff2", "assets/fonts/inter-latin-wght-normal.woff2"],
 ];
 for (const [from, to] of vendor) {
   const src = join(root, "node_modules", from);

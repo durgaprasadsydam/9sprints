@@ -41,7 +41,7 @@ export const hscroll = (steps, { id = "process", label = "Our process", title })
 
 const stepImgs = ["discover", "plan", "build", "launch", "scale"];
 export const processList = (steps) => `
-<section class="sec" id="sprint-model" aria-labelledby="sprint-model-h">
+<section class="pl-sec" id="sprint-model" aria-labelledby="sprint-model-h">
   <div class="wrap">
     <div class="pl-head">
       <div>
@@ -148,7 +148,7 @@ export const home = () => {
 <section class="hero" id="hero" aria-labelledby="hero-h">
   <div class="mesh" data-hero-bg></div><div class="grid-lines" data-hero-bg></div>
   <div class="wrap hero-main" data-hero-content>
-    <div class="obj" style="left:2%;top:6%;width:clamp(90px,12vw,210px)" data-tile="0.05"><img class="obj-in obj-img" src="assets/img/home/launch.webp" alt="" width="400" height="400" decoding="async"></div>
+    <div class="obj" style="left:12%;bottom:4%;width:clamp(64px,7vw,124px)" data-tile="0.05"><img class="obj-in obj-img" src="assets/img/home/plan.webp" alt="" width="400" height="400" decoding="async"></div>
     <div class="obj" style="right:6%;bottom:3%;width:clamp(76px,9vw,165px)" data-tile="-0.04"><img class="obj-in obj-img" src="assets/img/home/scale.webp" alt="" width="400" height="400" decoding="async"></div>
     <div class="hero-copy">
       <h1 class="h1" id="hero-h">
@@ -192,7 +192,7 @@ export const home = () => {
 <section class="sec" aria-labelledby="intro-h">
   <div class="wrap">
     <p class="label mb-8" data-reveal id="intro-h">Who we are</p>
-    <p class="font-display text-[clamp(1.6rem,3.6vw,3.75rem)] leading-[1.15] tracking-tight max-w-[28ch] sm:max-w-[34ch]" data-scrub-words>9Sprints is a technology partner for companies that need to ship. We bring engineering, delivery leadership, applied AI and the right people together — and run it all in short, measurable sprints.</p>
+    <p class="font-display text-[28px] md:text-[40px] leading-[1.25] tracking-tight max-w-[34ch] md:max-w-[42ch]" data-scrub-words>9Sprints is a technology partner for companies that need to ship. We bring engineering, delivery leadership, applied AI and the right people together and run it all in short, measurable sprints.</p>
     <div class="bento-grid" data-reveal-stagger>
       <article class="bn bn-a">
         <img class="bn-img bn-star" src="assets/img/home/star-icon.webp" alt="" width="800" height="800" loading="lazy" decoding="async">
@@ -265,7 +265,7 @@ export const home = () => {
 ${processList(homeSteps)}
 
 <!-- AI SPOTLIGHT -->
-<section class="sec" aria-labelledby="ai-h">
+<section class="sec !pt-[clamp(24px,3vw,48px)]" aria-labelledby="ai-h">
   <div class="wrap">
     <div class="ai-card grid lg:grid-cols-2 gap-12 items-center" data-reveal>
       <div>

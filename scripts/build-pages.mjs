@@ -2,9 +2,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { page, ringSvg, btn, RING } from "./lib.mjs";
-import { home } from "./home.mjs";
-import { servicePages, servicesOverview } from "./services.mjs";
+import { ringSvg, RING } from "./lib.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -30,35 +28,8 @@ const out = (rel, data) => {
   writeFileSync(f, data);
 };
 
-// ---------- stub pages ----------
-const stub = (file, key, title, label, desc) => {
-  const p = { key, file, title: `${title} | 9Sprints`, desc };
-  return [
-    file,
-    page(
-      p,
-      `<section class="hero !min-h-[80svh]" aria-labelledby="stub-h">
-  <div class="mesh" aria-hidden="true"></div><div class="grid-lines" aria-hidden="true"></div>
-  <div class="wrap relative">
-    <p class="eyebrow mb-8">${label}</p>
-    <h1 class="h1-sm mb-8" id="stub-h" data-split>${title} <span class="em">coming soon.</span></h1>
-    <p class="lead max-w-[48ch] mb-10" data-reveal>${desc} This page is on its way — in the meantime, tell us about your project.</p>
-    <div class="flex gap-3" data-reveal>${btn("Start a Project", "contact.html", "accent")}${btn("Back home", "index.html", "outline")}</div>
-  </div>
-</section>`
-    ),
-  ];
-};
-
-const pages = [
-  ["index.html", home()],
-  servicesOverview() && ["services.html", servicesOverview()],
-  ...servicePages(),
-  stub("industries.html", "industries", "Industries", "Industries", "How 9Sprints serves healthcare, fintech, retail, logistics, edtech, SaaS and manufacturing."),
-  stub("about.html", "about", "About Us", "About", "The story, people and principles behind 9Sprints."),
-  stub("careers.html", "careers", "Careers", "Careers", "Open roles and opportunities at 9Sprints and with our clients."),
-  stub("contact.html", "contact", "Contact", "Contact", "Reach the 9Sprints team to start a project or hire talent."),
-];
+// index.html is hand-authored (css/site.css, js/site.js); no generated pages.
+const pages = [];
 for (const [f, html] of pages) out(f, html);
 
 // ---------- brand assets ----------

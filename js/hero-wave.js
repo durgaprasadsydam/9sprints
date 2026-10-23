@@ -290,7 +290,7 @@ function initHeroWave() {
     const camY = Lerp(C.camStartY, C.camEndY, e);
     const camZ = Lerp(C.camStartZ, C.camEndZ, e);
     camera.position.set(m.x * C.parallax, camY + m.y * C.parallax * 0.3, camZ);
-    camera.lookAt(m.x * C.parallax * 0.5, Lerp(0.0, 0.6, e), Lerp(C.lookStartZ, C.lookEndZ, e));
+    camera.lookAt(m.x * C.parallax * 0.5 + (mobile ? 0 : -1.2), Lerp(0.0, 0.6, e), Lerp(C.lookStartZ, C.lookEndZ, e));
     group.rotation.x = -C.tilt; group.rotation.y = 0;
     updatePointerWorld();
     uniforms.uCursor.value.copy(POINTER.world);

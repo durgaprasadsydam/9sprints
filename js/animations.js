@@ -253,15 +253,15 @@
     gsap.set(split.lines, { yPercent: 110 });
     gsap.set(q('[data-hero-anim="text"]'), { y: 30, autoAlpha: 0 });
     gsap.set(q('[data-hero-anim="btns"] > *'), { scale: 0.9, autoAlpha: 0 });
-    gsap.set(q('[data-hero-anim="chips"] li, .scroll-hint'), { autoAlpha: 0 });
+    gsap.set(q(".scroll-hint"), { autoAlpha: 0 });
 
     var intro = function () {
       return gsap.timeline()
         .to(q('[data-hero-anim="eyebrow"]'), { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" }, 0)
-        .to(split.lines, { yPercent: 0, duration: 1.1, stagger: 0.1, ease: "expo.out" }, 0.1)
+        .to(split.lines, { yPercent: 0, duration: 1.1, stagger: 0.12, ease: "expo.out" }, 0.1)
         .to(q('[data-hero-anim="text"]'), { y: 0, autoAlpha: 1, duration: 0.8, stagger: 0.08, ease: "power3.out" }, 0.5)
         .to(q('[data-hero-anim="btns"] > *'), { scale: 1, autoAlpha: 1, duration: 0.6, stagger: 0.08, ease: "back.out(1.6)" }, 0.7)
-        .to(q('[data-hero-anim="chips"] li, .scroll-hint'), { autoAlpha: 1, duration: 0.5, stagger: 0.05 }, 0.9);
+        .to(q(".scroll-hint"), { autoAlpha: 1, duration: 0.5, stagger: 0.05 }, 0.9);
     };
     if (NS.preloaderDone) intro();
     else window.addEventListener("preloader:done", intro, { once: true });

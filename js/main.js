@@ -65,7 +65,10 @@
     var y = window.scrollY || root.scrollTop;
     hdr.classList.toggle("is-scrolled", y > 50 || megaOpen || menuOpen);
     if (!megaOpen && !menuOpen) {
-      if (y > 240 && y > lastY + 4) hdr.classList.add("is-hidden");
+      // inside the pinned hero the header stays hidden both ways; it returns at the top or after the hero
+      var heroPin = window.ScrollTrigger && ScrollTrigger.getById("hero-pin");
+      if (heroPin && y > 50 && y < heroPin.end - 2) hdr.classList.add("is-hidden");
+      else if (y > 240 && y > lastY + 4) hdr.classList.add("is-hidden");
       else if (y < lastY - 4 || y < 240) hdr.classList.remove("is-hidden");
     }
     lastY = y;

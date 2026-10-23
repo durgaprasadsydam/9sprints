@@ -241,49 +241,37 @@
     });
   }
 
-  /* ---------- Hero (homepage) ---------- */
+  /* ---------- Hero (homepage) — hero-wave.js owns the pin ("hero-pin") ---------- */
   function initHero() {
     var hero = $("#hero");
     if (!hero) return;
-    var lines = $$("[data-hero-line] > span", hero);
-    var ins = $$("[data-hero-in]", hero);
-    var tiles = $$("[data-tile]", hero);
-    var chips = $$("[data-chip]", hero);
+    var q = function (s) { return hero.querySelectorAll(s); };
+    var split = new SplitText(q(".hero-title .line"), { type: "lines", linesClass: "hl" });
     if (reduced) return;
 
-    function intro() {
-      var tl = gsap.timeline();
-      tl.to(lines, { yPercent: 0, duration: 1.3, stagger: 0.12, ease: EXPO })
-        .to(ins, { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: P3 }, 0.5)
-        .from(tiles, { scale: 0.8, opacity: 0, duration: 1.2, stagger: 0.12, ease: EXPO }, 0.3)
-        .from(chips, { scale: 0.6, opacity: 0, duration: 0.9, stagger: 0.06, ease: P3 }, 0.6);
-    }
-    lines.forEach(function (l) { l.style.transform = "none"; }); // hand control from the CSS pre-state to GSAP
-    gsap.set(lines, { yPercent: 115 });
-    gsap.set(ins, { y: 24 });
-    if (NS.ready) intro(); else d.addEventListener("ns:ready", intro, { once: true });
+    gsap.set(q('[data-hero-anim="eyebrow"]'), { y: 20, autoAlpha: 0 });
+    gsap.set(split.lines, { yPercent: 110 });
+    gsap.set(q('[data-hero-anim="text"]'), { y: 30, autoAlpha: 0 });
+    gsap.set(q('[data-hero-anim="btns"] > *'), { scale: 0.9, autoAlpha: 0 });
+    gsap.set(q('[data-hero-anim="chips"] li, .scroll-hint'), { autoAlpha: 0 });
 
-    // ambient motion
-    gsap.to($(".mesh", hero), { xPercent: 6, yPercent: -5, rotate: 8, duration: 14, ease: "sine.inOut", yoyo: true, repeat: -1 });
-    chips.forEach(function (c) {
-      gsap.to(c, { x: gsap.utils.random(-26, 26), y: gsap.utils.random(-30, 30), duration: gsap.utils.random(3, 6), ease: "sine.inOut", yoyo: true, repeat: -1 });
-    });
-    $$(".obj-in", hero).forEach(function (o, i) {
-      gsap.to(o, { y: i % 2 ? 22 : -22, rotation: i % 2 ? -6 : 6, duration: gsap.utils.random(4, 6.5), ease: "sine.inOut", yoyo: true, repeat: -1 });
-    });
-    // pointer parallax
-    if (finePointer) {
-      var setters = tiles.map(function (t) {
-        return { f: parseFloat(t.dataset.tile) || 0.05, x: gsap.quickTo(t, "x", { duration: 1.1, ease: P3 }), y: gsap.quickTo(t, "y", { duration: 1.1, ease: P3 }) };
-      });
-      hero.addEventListener("mousemove", function (e) {
-        var nx = e.clientX - window.innerWidth / 2, ny = e.clientY - window.innerHeight / 2;
-        setters.forEach(function (s) { s.x(nx * s.f); s.y(ny * s.f); });
-      });
-    }
-    // scroll-out
-    gsap.to($$("[data-hero-content]", hero), { scale: 0.92, opacity: 0, ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true } });
-    gsap.to($$("[data-hero-bg]", hero), { yPercent: 25, ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true } });
+    var intro = function () {
+      return gsap.timeline()
+        .to(q('[data-hero-anim="eyebrow"]'), { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" }, 0)
+        .to(split.lines, { yPercent: 0, duration: 1.1, stagger: 0.1, ease: "expo.out" }, 0.1)
+        .to(q('[data-hero-anim="text"]'), { y: 0, autoAlpha: 1, duration: 0.8, stagger: 0.08, ease: "power3.out" }, 0.5)
+        .to(q('[data-hero-anim="btns"] > *'), { scale: 1, autoAlpha: 1, duration: 0.6, stagger: 0.08, ease: "back.out(1.6)" }, 0.7)
+        .to(q('[data-hero-anim="chips"] li, .scroll-hint'), { autoAlpha: 1, duration: 0.5, stagger: 0.05 }, 0.9);
+    };
+    if (NS.preloaderDone) intro();
+    else window.addEventListener("preloader:done", intro, { once: true });
+
+    // scroll-out, same range as the pin (no pin here)
+    gsap.timeline({ scrollTrigger: { trigger: hero, start: "top top", end: "+=120%", scrub: 0.6 } })
+      .to({}, { duration: 0.55 })
+      .to(".hero-content, .scroll-hint", { y: -80, autoAlpha: 0, duration: 0.35, ease: "none" })
+      .to(".hero-shade", { opacity: 1, backgroundColor: "rgba(1,14,34,.6)", duration: 0.35, ease: "none" }, "<")
+      .to({}, { duration: 0.1 });
   }
 
   /* ---------- Stacking service cards ---------- */

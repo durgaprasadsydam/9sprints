@@ -304,7 +304,14 @@ ${footer()}
 <script src="js/vendor/lenis.min.js"></script>
 ${p.swiper ? '<script src="js/vendor/swiper-bundle.min.js"></script>' : ""}
 <script src="js/main.js"></script>
-<script src="js/animations.js"></script>
+<script src="js/animations.js"></script>${p.heroWave ? `
+<script type="importmap">
+{ "imports": {
+  "three": "https://unpkg.com/three@0.143.0/build/three.module.js",
+  "three/addons/": "https://unpkg.com/three@0.143.0/examples/jsm/"
+} }
+</script>
+<script type="module" src="js/hero-wave.js"></script>` : ""}
 </body>
 </html>
 `;

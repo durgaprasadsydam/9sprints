@@ -139,44 +139,39 @@ export const home = () => {
     key: "home",
     file: "index.html",
     swiper: true,
+    heroWave: true,
     title: "9Sprints — Ship Fast. Scale Smart. In Sprints. | Software, AI, Delivery & Staffing",
     desc: "9Sprints is a technology partner for companies that need to ship: product engineering, program management, applied AI and IT staffing, run in short, measurable sprints.",
     ld: { "@context": "https://schema.org", "@type": "Organization", name: "9Sprints", url: "https://www.9sprints.com", slogan: "Ship Fast. Scale Smart. In Sprints." },
   };
   const body = `
 <!-- HERO -->
-<section class="hero" id="hero" aria-labelledby="hero-h">
-  <div class="mesh" data-hero-bg></div><div class="grid-lines" data-hero-bg></div>
-  <div class="wrap hero-main" data-hero-content>
-    <div class="obj" style="left:12%;bottom:4%;width:clamp(64px,7vw,124px)" data-tile="0.05"><img class="obj-in obj-img" src="assets/img/home/plan.webp" alt="" width="400" height="400" decoding="async"></div>
-    <div class="obj" style="right:6%;bottom:3%;width:clamp(76px,9vw,165px)" data-tile="-0.04"><img class="obj-in obj-img" src="assets/img/home/scale.webp" alt="" width="400" height="400" decoding="async"></div>
-    <div class="hero-copy">
-      <h1 class="h1" id="hero-h">
-        <span class="sr-only">Design, software, AI, delivery, talent and some magic</span>
-        <span class="hl-mask" data-hero-line aria-hidden="true"><span class="hl-row l1">Design,
-          <span class="pill" data-marquee data-speed="0.9"><span class="marquee-track"><span class="marquee-group">${PILL_WORDS.map((w) => `<span class="pill-word">${w}</span><svg class="spark pill-spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1c.7 6.3 4.7 10.3 11 11-6.3.7-10.3 4.7-11 11-.7-6.3-4.7-10.3-11-11 6.3-.7 10.3-4.7 11-11z" fill="currentColor"/></svg>`).join("")}</span></span></span></span></span>
-        <span class="hl-mask" data-hero-line aria-hidden="true"><span class="hl-row"><svg class="spark h1-spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1c.7 6.3 4.7 10.3 11 11-6.3.7-10.3 4.7-11 11-.7-6.3-4.7-10.3-11-11 6.3-.7 10.3-4.7 11-11z" fill="currentColor"/></svg><span>and some <span class="em">magic</span></span></span></span>
-      </h1>
+<section id="hero" class="hero" data-theme="dark" aria-labelledby="hero-h">
+  <canvas id="hero-wave" aria-hidden="true"></canvas>
+  <div class="hero-fallback" aria-hidden="true"></div>
+  <div class="hero-shade" aria-hidden="true"></div>
+
+  <div class="hero-content wrap">
+    <p class="hero-eyebrow" data-hero-anim="eyebrow"><span class="dot"></span>Software · Governance · AI · Talent</p>
+    <h1 class="hero-title" id="hero-h" data-hero-anim="title">
+      <span class="line">Engineering smart software.</span>
+      <span class="line">Managing complex delivery.</span>
+      <span class="line">Scaling <em class="grad">elite talent.</em></span>
+    </h1>
+    <p class="hero-sub" data-hero-anim="text">Architecting Velocity, Scaling Talent.</p>
+    <p class="hero-text" data-hero-anim="text">We turn business vision into resilient products, governed programs and high-performing teams.</p>
+    <div class="hero-actions" data-hero-anim="btns">
+      <a href="contact.html" class="btn btn-accent" data-magnetic><span class="btn-label"><span>Start a Project</span><span aria-hidden="true">Start a Project</span></span></a>
+      <a href="#services" class="btn btn-outline" data-scroll-to><span class="btn-label"><span>Explore Services</span><span aria-hidden="true">Explore Services</span></span></a>
     </div>
+    <ul class="hero-chips" data-hero-anim="chips">
+      <li>Software</li><li>PMO</li><li>AI</li><li>Talent</li>
+    </ul>
   </div>
 
-  <div class="wrap hero-foot" data-hero-content>
-    <button type="button" class="badge-spin hidden md:grid" id="scroll-badge" data-hero-in aria-label="Scroll to services" data-scroll-to="#services">
-      <svg class="badge-ring" viewBox="0 0 124 124" aria-hidden="true"><defs><path id="ring-path" d="M62 62m-48 0a48 48 0 1 1 96 0a48 48 0 1 1-96 0"/></defs><text><textPath href="#ring-path">Scroll to explore • Scroll to explore • </textPath></text></svg>
-      ${ringSvg({ cls: "arrow-mark", nine: false })}
-    </button>
-    <div class="hero-foot-copy" data-hero-in>
-      <p class="mb-6">We design, build and staff the software that moves your business forward — in focused sprints.</p>
-      <div class="flex flex-wrap gap-3">${btn("Start a Project", "contact.html", "accent")}${btn("Our Services", "#services", "outline")}</div>
-    </div>
-    <ul class="hero-links" data-hero-in aria-label="Follow us">
-      ${["LinkedIn", "GitHub", "X", "Instagram"].map((s) => `<li><a href="#"><svg class="spark link-spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1c.7 6.3 4.7 10.3 11 11-6.3.7-10.3 4.7-11 11-.7-6.3-4.7-10.3-11-11 6.3-.7 10.3-4.7 11-11z" fill="currentColor"/></svg>${s}</a></li>`).join("")}
-    </ul>
-    <a href="#services" class="hero-thumb" data-hero-in data-cursor="View" aria-label="Explore our services">
-      ${img("home/ai-solutions.webp", "Applied AI work preview", 400, 260, { eager: true })}
-      <span class="hero-thumb-btn">${icon("arrow", "w-6 h-6")}</span>
-    </a>
-  </div>
+  <button type="button" class="scroll-hint" data-scroll-to="#services" aria-label="Scroll down">
+    <span>Scroll</span><i></i>
+  </button>
 </section>
 
 <!-- ABOUT VISUAL -->

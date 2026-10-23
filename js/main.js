@@ -342,6 +342,11 @@
   }
 
   /* ---------- Preloader (homepage, first visit per session) ---------- */
+  function preloaderDone() {
+    if (NS.preloaderDone) return;
+    NS.preloaderDone = true;
+    window.dispatchEvent(new Event("preloader:done"));
+  }
   function ready() {
     NS.ready = true;
     d.dispatchEvent(new Event("ns:ready"));
@@ -362,6 +367,7 @@
       root.classList.remove("preloading");
       NS.startScroll();
       try { sessionStorage.setItem("9s-pl", "1"); } catch (e) {}
+      preloaderDone();
     };
     var tl = gsap.timeline({ onComplete: finish });
     tl.to(o, { v: 100, duration: 2.6, ease: "power2.inOut", onUpdate: function () { num.textContent = Math.round(o.v); } }, 0)
@@ -377,6 +383,7 @@
     setTimeout(function () { if (root.classList.contains("preloading")) { finish(); ready(); } }, 10000);
   } else {
     root.classList.remove("preloading");
+    preloaderDone();
     ready();
   }
 })();

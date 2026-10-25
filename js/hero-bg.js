@@ -6,12 +6,23 @@ const hero = host.closest(".hero");
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const canvas = document.createElement("canvas");
-const gl = canvas.getContext("webgl", { antialias: false, alpha: false, powerPreference: "low-power" });
-if (!gl) throw new Error("no webgl");
+// try the preferred options first, then progressively plainer ones (some drivers refuse "low-power")
+const gl = [["webgl", { antialias: false, alpha: false, powerPreference: "low-power" }], ["webgl", { alpha: false }], ["webgl", undefined], ["experimental-webgl", undefined]]
+  .map(([k, o]) => { try { return canvas.getContext(k, o); } catch (e) { return null; } })
+  .find(Boolean);
+if (!gl) {
+  // no WebGL (hardware acceleration off / GPU blocklisted): use the CSS-only animated background
+  hero.classList.add("no-gl");
+  return;
+}
 
 const vs = "attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}";
 const fs = `
+#ifdef GL_FRAGMENT_PRECISION_HIGH
 precision highp float;
+#else
+precision mediump float;
+#endif
 uniform vec2 r; uniform float t; uniform vec2 m; uniform float fl;
 
 float h(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
@@ -72,24 +83,30 @@ const sh = (type, src) => {
   if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(o));
   return o;
 };
-const prog = gl.createProgram();
-gl.attachShader(prog, sh(gl.VERTEX_SHADER, vs));
-gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, fs));
-gl.linkProgram(prog);
-gl.useProgram(prog);
+let U;
+// (re)build the GL program + buffer; also used after the browser restores a lost context
+const setup = () => {
+  const prog = gl.createProgram();
+  gl.attachShader(prog, sh(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
 
-const buf = gl.createBuffer();
-gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-const loc = gl.getAttribLocation(prog, "a");
-gl.enableVertexAttribArray(loc);
-gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-const U = { fl: gl.getUniformLocation(prog, "fl"), r: gl.getUniformLocation(prog, "r"), t: gl.getUniformLocation(prog, "t"), m: gl.getUniformLocation(prog, "m") };
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+  const loc = gl.getAttribLocation(prog, "a");
+  gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+  U = { fl: gl.getUniformLocation(prog, "fl"), r: gl.getUniformLocation(prog, "r"), t: gl.getUniformLocation(prog, "t"), m: gl.getUniformLocation(prog, "m") };
+};
+setup();
 
 host.appendChild(canvas);
 
 // render at reduced resolution: it is a soft background, and this keeps it cheap
 const resize = () => {
+  if (!host.clientWidth || !host.clientHeight) return;
   const k = Math.min(devicePixelRatio || 1, 1.5) * (matchMedia("(max-width: 768px)").matches ? 0.45 : 0.6);
   canvas.width = Math.max(2, Math.round(host.clientWidth * k));
   canvas.height = Math.max(2, Math.round(host.clientHeight * k));
@@ -121,8 +138,16 @@ const kick = () => { if (!raf && !reduce) { last = performance.now(); raf = requ
 
 resize();
 addEventListener("resize", resize);
+// layout can settle after load (fonts, images, smooth scroll): follow the host's real size
+if ("ResizeObserver" in window) new ResizeObserver(() => { resize(); draw(clock); }).observe(host);
 draw(clock);
 hero.classList.add("ready");
+
+// GPU context lost (many tabs, page switches): stop, then rebuild when the browser restores it
+canvas.addEventListener("webglcontextlost", (e) => { e.preventDefault(); if (raf) cancelAnimationFrame(raf); raf = 0; });
+canvas.addEventListener("webglcontextrestored", () => { setup(); resize(); draw(clock); kick(); });
+// coming back via the Back button: make sure the canvas is drawn and running again
+addEventListener("pageshow", (e) => { if (e.persisted) { resize(); draw(clock); kick(); } });
 
 if (!reduce) {
   hero.addEventListener("pointermove", (e) => {

@@ -1,0 +1,89 @@
+/* ---------- Service inner pages (builds on css/site.css + css/about.css) ---------- */
+main{--accent:var(--ca,#0252f1)}
+.ab-hero.sv-hero h1{max-width:80%}
+.sv-hero .sub-copy{max-width:56ch}
+.nav-parent.is-current::after{transform:scaleX(1)}
+.sub a[aria-current="page"]{background:rgba(255,255,255,.08)}
+
+/* capabilities: column count follows the number of cards */
+.sv-caps{grid-template-columns:repeat(var(--n,4),1fr)}
+
+/* focus section: glass rows with tags */
+.sv-list{display:grid;gap:14px}
+.sv-pt{position:relative;isolation:isolate;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(14px,2vw,28px);align-items:center;padding:clamp(20px,2.4vw,30px);border-radius:22px;overflow:hidden;
+  background:linear-gradient(160deg,rgba(255,255,255,.075),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:inset 0 1px 0 rgba(255,255,255,.1);transition:border-color .4s,box-shadow .5s}
+.sv-pt::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .4s;background:radial-gradient(380px circle at var(--x,50%) var(--y,0%),color-mix(in srgb,var(--c2) 40%,transparent),transparent 60%)}
+.sv-pt:hover{border-color:color-mix(in srgb,var(--c2) 70%,transparent);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 30px 60px -30px var(--c1)}
+.sv-pt:hover::before{opacity:1}
+.sv-pt-i{font:600 .78rem var(--font-body);letter-spacing:.12em;color:#7fd8ff}
+.sv-pt h3{margin:0 0 6px;font:600 clamp(1.1rem,1.6vw,1.35rem)/1.25 var(--font-display);letter-spacing:-.01em;color:#fff}
+.sv-pt p{margin:0;font-size:.95rem;line-height:1.55;color:rgba(255,255,255,.66)}
+.sv-tags{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;max-width:210px;margin:0;padding:0;list-style:none}
+.sv-tags li{padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);font:500 .76rem var(--font-body);color:rgba(255,255,255,.85);white-space:nowrap}
+
+/* process: four steps with a drawing rule */
+.sv-steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2vw,28px);margin:0;padding:clamp(28px,3vw,40px) 0 0;list-style:none}
+.sv-steps::before{content:"";position:absolute;left:0;top:0;height:2px;width:100%;background:linear-gradient(90deg,var(--c1),var(--c2));transform:scaleX(0);transform-origin:left;transition:transform 1.6s cubic-bezier(.22,1,.36,1)}
+.sv-steps.in::before{transform:none}
+.sv-step{position:relative;padding-right:clamp(0px,1vw,16px)}
+.sv-step::before{content:"";position:absolute;left:0;top:calc(clamp(28px,3vw,40px) * -1 - 5px);width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid var(--c2)}
+.sv-step-n{display:block;font:600 clamp(2.8rem,4.4vw,4rem)/1 var(--font-display);letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px color-mix(in srgb,var(--c1) 55%,transparent)}
+.sv-step h3{margin:14px 0 8px;font:600 clamp(1.25rem,1.8vw,1.5rem)/1.2 var(--font-display);letter-spacing:-.02em}
+.sv-step p{margin:0;font-size:.95rem;line-height:1.6;color:var(--muted)}
+
+/* engagement rows: value line */
+
+/* related services */
+.sv-rel{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.4vw,18px)}
+.sv-card{position:relative;isolation:isolate;display:block;min-height:clamp(320px,32vw,400px);overflow:hidden;border-radius:26px;color:#fff;background:#0a2a52}
+.sv-card img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;transform:scale(1.04);filter:saturate(.9) brightness(.85);transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
+.sv-card::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(1,14,34,.1) 20%,rgba(1,14,34,.92)),linear-gradient(160deg,var(--c),transparent 60%)}
+.sv-card:hover img{transform:scale(1.1)}
+.sv-card-in{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(20px,2vw,28px)}
+.sv-card-n{align-self:flex-start;padding:7px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font:600 .78rem var(--font-body);letter-spacing:.06em}
+.sv-card h3{margin:0 0 8px;font:600 clamp(1.25rem,1.8vw,1.55rem)/1.15 var(--font-display);letter-spacing:-.02em}
+.sv-card p{margin:0;max-width:34ch;font-size:.93rem;line-height:1.55;color:rgba(255,255,255,.82)}
+.sv-card-go{position:absolute;top:clamp(20px,2vw,28px);right:clamp(20px,2vw,28px);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#fff;color:#011a39;transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.sv-card:hover .sv-card-go{transform:rotate(45deg)}
+
+@media (max-width:1000px){
+  .sv-caps{grid-template-columns:1fr 1fr}
+  .sv-steps{grid-template-columns:1fr 1fr;row-gap:44px}
+  .sv-rel{grid-template-columns:1fr}
+  .sv-card{min-height:280px}
+}
+@media (max-width:760px){
+  .sv-pt{grid-template-columns:auto 1fr}
+  .sv-tags{grid-column:2;justify-content:flex-start;max-width:none}
+  .sv-caps{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .sv-steps{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  .sv-steps::before{transform:none;transition:none}
+}
+
+/* Engagement models: dark glass bento cards with cursor spotlight */
+.ab-eng:has(.sv-eng-card){position:relative;isolation:isolate;overflow:hidden;background:#020b1d;color:#fff;border-radius:44px}
+.ab-eng:has(.sv-eng-card)::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(60% 70% at 100% 0%,color-mix(in srgb,var(--accent) 55%,transparent),transparent 62%),radial-gradient(50% 60% at 0% 100%,rgba(3,209,246,.22),transparent 65%)}
+.ab-eng:has(.sv-eng-card) .kicker{color:#7fd8ff}
+.ab-eng:has(.sv-eng-card) .kicker::before{background:#7fd8ff}
+.ab-eng:has(.sv-eng-card) .ab-h2{color:#fff}
+.ab-eng:has(.sv-eng-card) .ab-h2 em{background:linear-gradient(90deg,#7fd8ff,#45eaae);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ab-eng:has(.sv-eng-card) .ab-lead{color:rgba(255,255,255,.7)}
+.ab-eng-list:has(.sv-eng-card){grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,24px);border-top:0}
+.sv-eng-card{position:relative;isolation:isolate;display:flex;flex-direction:column;gap:24px;min-height:340px;padding:clamp(28px,3.2vw,44px);border:1px solid rgba(255,255,255,.12);border-radius:30px;background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.02));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);overflow:hidden;transition:transform .5s cubic-bezier(.22,1,.36,1),border-color .4s,box-shadow .5s}
+.sv-eng-card::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .4s;background:radial-gradient(420px circle at var(--x,50%) var(--y,0%),color-mix(in srgb,var(--accent) 38%,transparent),transparent 62%)}
+.sv-eng-card:hover{transform:translateY(-6px);border-color:rgba(127,216,255,.45);box-shadow:0 40px 80px -40px rgba(2,82,241,.8)}
+.sv-eng-card:hover::before{opacity:1}
+.sv-eng-n{position:absolute;right:clamp(18px,2.4vw,32px);top:clamp(6px,1vw,14px);font:700 clamp(5rem,9vw,8rem)/1 var(--font-display);letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px rgba(127,216,255,.35);pointer-events:none;transition:-webkit-text-stroke-color .4s}
+.sv-eng-card:hover .sv-eng-n{-webkit-text-stroke-color:rgba(127,216,255,.8)}
+.sv-eng-card h3{margin:0;max-width:11ch;font:600 clamp(1.7rem,2.8vw,2.4rem)/1.08 var(--font-display);letter-spacing:-.03em;color:#fff}
+.sv-eng-b p{margin:0;color:rgba(255,255,255,.68);line-height:1.6}
+.sv-eng-lb{display:inline-block;margin-bottom:10px;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);font:600 .68rem/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:#7fd8ff}
+.sv-eng-v p{color:#fff;font-weight:500}
+.sv-eng-link{margin-top:auto;align-self:flex-start;position:relative;padding-bottom:4px;font:600 .95rem var(--font-body);color:#fff;text-decoration:none;background:linear-gradient(90deg,#7fd8ff,#45eaae) left bottom/100% 1.5px no-repeat;transition:background-size .4s,color .3s}
+.sv-eng-link:hover{background-size:100% 100%;color:#011a39}
+@media (max-width:760px){.ab-eng-list:has(.sv-eng-card){grid-template-columns:1fr}.sv-eng-card{min-height:0}.sv-eng-card h3{max-width:none;padding-right:80px}}

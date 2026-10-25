@@ -128,6 +128,14 @@ a{color:inherit;text-decoration:none}
 .hero-bg{position:absolute;inset:0;background:
   radial-gradient(40% 50% at 80% 30%,rgba(2,171,254,.18),transparent 70%),
   radial-gradient(35% 45% at 60% 85%,rgba(69,234,174,.10),transparent 70%)}
+/* fallback when WebGL is unavailable: slow drifting light, same palette */
+.hero.no-gl .hero-bg{background:
+  radial-gradient(38% 46% at 78% 28%,rgba(2,171,254,.34),transparent 70%),
+  radial-gradient(34% 42% at 58% 80%,rgba(2,82,241,.38),transparent 70%),
+  radial-gradient(30% 38% at 92% 70%,rgba(69,234,174,.14),transparent 70%);
+  background-size:140% 140%;animation:glDrift 22s ease-in-out infinite alternate}
+@keyframes glDrift{from{background-position:0% 0%}to{background-position:100% 100%}}
+@media (prefers-reduced-motion:reduce){.hero.no-gl .hero-bg{animation:none}}
 .hero-field{position:absolute;z-index:0;top:0;left:0;right:0;bottom:-260px;overflow:hidden;
   background:linear-gradient(180deg,rgba(102,178,255,0) calc(100% - 470px),rgba(102,178,255,.55) calc(100% - 240px),#fff 100%),radial-gradient(120% 80% at 78% 38%,#0a2a52 0%,var(--hero-2) 45%,var(--hero-1) 100%)}
 .hero-canvas{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 1.6s ease}

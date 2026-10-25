@@ -2,9 +2,8 @@
 export const SITE = {
   name: "9Sprints",
   url: "https://www.9sprints.com",
-  email: "hello@9sprints.com", // [PLACEHOLDER]
-  phone: "+91 00000 00000", // [PLACEHOLDER]
-  office: "Hyderabad, India",
+  email: "connect@9sprints.com",
+  office: "8 The Green, STE A, Dover, DE 19901",
   tagline: "Ship Fast. Scale Smart. In Sprints.",
 };
 
@@ -255,7 +254,6 @@ const footer = () => `
         <li><a href="about.html">About Us</a></li><li><a href="industries.html">Industries</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
       <div class="ftr-col col-span-2 lg:col-span-1"><h4>Contact</h4><ul>
         <li><a href="mailto:${SITE.email}">${SITE.email}</a></li>
-        <li><a href="tel:+910000000000">${SITE.phone}</a></li>
         <li>${SITE.office}</li></ul></div>
       <div class="ftr-col col-span-2 lg:col-span-1"><h4>Newsletter</h4>
         <form class="flex flex-col gap-3" id="newsletter" novalidate>

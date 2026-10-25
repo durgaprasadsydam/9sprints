@@ -707,3 +707,26 @@ a.sv:hover .sv-code u,a.sv:hover .sv-road i{animation-duration:2.2s}
 /* hero content: sit a little lower, clear of the menu */
 .hero-inner{padding-top:clamp(150px,21vh,210px);padding-bottom:clamp(120px,15vh,170px)}
 .hero-inner{padding-top:clamp(185px,26vh,250px);padding-bottom:clamp(100px,12vh,140px)}
+
+/* Header: frosted light-glass bar so the full-colour logo reads clearly (no pill behind the logo) */
+.logo{display:inline-flex;align-items:center;justify-self:start;width:fit-content}
+.logo img{height:58px;margin:0}
+.bar::before{border:1px solid rgba(255,255,255,.55);background:linear-gradient(135deg,rgba(255,255,255,.78),rgba(226,240,255,.62));-webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);box-shadow:0 14px 40px -16px rgba(1,14,34,.55),inset 0 1px 0 rgba(255,255,255,.9)}
+.top.scrolled .bar::before{background:linear-gradient(135deg,rgba(255,255,255,.9),rgba(232,243,255,.82))}
+.burger span{background:#0b1b33}
+.burger[aria-expanded="true"] span{background:#fff}
+.btn-contact{background:linear-gradient(135deg,#023495,#0252f1);color:#fff;box-shadow:0 10px 26px -12px rgba(2,82,241,.8)}
+@media (min-width:901px){
+  .nav a{color:#0b1b33}
+  .nav>a::after,.nav-parent::after{background:#0252f1}
+  .nav a.is-current,.nav a[aria-current="page"]{color:#0252f1}
+  .sub{background:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.7);box-shadow:0 28px 60px -24px rgba(1,14,34,.5);-webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5)}
+  .sub a:hover{background:rgba(2,82,241,.08)}
+  .sub b{color:#0252f1}
+  .sub-t strong{color:#0b1b33}
+  .sub-t small{color:#5b6b82}
+  .sub-ar{color:#0252f1}
+}
+@media (max-width:900px){.logo img{height:46px;margin:0}}
+.btn-contact:hover span{color:#011a39}
+.btn-contact i{color:#011a39}

@@ -180,20 +180,20 @@ function header(s) {
 function page(s, all) {
   const { c1, c2, ca } = s.colors;
   const cards = s.caps.map(([t, p, i], k) => `
-        <article class="ab-val" style="--c1:${c1};--c2:${c2}"><div><span class="ab-val-n">${num(k + 1)}</span><span class="ab-val-ico">${ico(I[i])}</span></div><div><h3>${esc(t)}</h3><p>${esc(p)}</p></div></article>`).join("");
+        <article class="ab-val" style="--c1:${c1};--c2:${c2}"><div><span class="ab-val-ico">${ico(I[i])}</span></div><div><h3>${esc(t)}</h3><p>${esc(p)}</p></div></article>`).join("");
   const rows = s.focus.items.map(([t, p, tags], k) => `
-          <div class="sv-pt"><span class="sv-pt-i">${num(k + 1)}</span><div><h3>${esc(t)}</h3><p>${esc(p)}</p></div><ul class="sv-tags">${tags.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>`).join("");
+          <div class="sv-pt"><div><h3>${esc(t)}</h3><p>${esc(p)}</p></div><ul class="sv-tags">${tags.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>`).join("");
   const steps = ENGINE.map(([t, p], k) => `
-        <li class="sv-step"><span class="sv-step-n">${num(k + 1)}</span><h3>${t}</h3><p>${p}</p></li>`).join("");
+        <li class="sv-step"><h3>${t}</h3><p>${p}</p></li>`).join("");
   const models = s.models.map((m, k) => {
     const [t, scenario, value] = MODEL[m];
     return `
-          <article class="sv-eng-card spot"><span class="sv-eng-n" aria-hidden="true">${num(k + 1)}</span><h3>${t}</h3><div class="sv-eng-b"><span class="sv-eng-lb">Best for</span><p>${scenario}</p></div><div class="sv-eng-b sv-eng-v"><span class="sv-eng-lb">You get</span><p>${value}</p></div><a class="sv-eng-link" href="contact.html">Discuss this model</a></article>`;
+          <article class="sv-eng-card spot"><h3>${t}</h3><div class="sv-eng-b"><span class="sv-eng-lb">Best for</span><p>${scenario}</p></div><div class="sv-eng-b sv-eng-v"><span class="sv-eng-lb">You get</span><p>${value}</p></div><a class="sv-eng-link" href="contact.html">Discuss this model</a></article>`;
   }).join("");
   const rel = s.related.map((i) => {
     const o = all[i];
     return `
-        <a class="sv-card" href="${o.file}" style="--c:${o.colors.c2}"><img src="assets/img/home/${o.img}.webp" alt="" width="1280" height="853" loading="lazy"><span class="sv-card-in"><span class="sv-card-n">Track ${o.track}</span><span><h3>${esc(o.name)}</h3><p>${esc(o.lead)}</p></span><span class="sv-card-go">${ARROW}</span></span></a>`;
+        <a class="sv-card" href="${o.file}" style="--c:${o.colors.c2}"><img src="assets/img/home/${o.img}.webp" alt="" width="1280" height="853" loading="lazy"><span class="sv-card-in"><span><h3>${esc(o.name)}</h3><p>${esc(o.lead)}</p></span><span class="sv-card-go">${ARROW}</span></span></a>`;
   }).join("");
 
   return `<!doctype html>
@@ -203,7 +203,7 @@ function page(s, all) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(s.title)} | 9sprints</title>
 <meta name="description" content="${esc(s.desc)}">
-<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icons/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet">

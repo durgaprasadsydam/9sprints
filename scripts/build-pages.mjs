@@ -38,10 +38,6 @@ const wrapSvg = (inner, w, h, bg = "") => `<svg xmlns="http://www.w3.org/2000/sv
 const strip = (s) => s.replace(/^<svg[^>]*>/, "").replace(/<\/svg>$/, "");
 const markInner = (nine) => strip(ringSvg({ nineFill: nine }));
 const word = (fill) => `<text x="112" y="68" font-family="'Funnel Display',Arial,sans-serif" font-weight="800" font-style="italic" font-size="54" fill="${fill}">SPRINTS</text>`;
-out("assets/logo/9sprints-mark.svg", wrapSvg(markInner("#011A39"), 100, 100));
-out("assets/logo/9sprints-logo.svg", wrapSvg(markInner("#011A39") + word("#011A39"), 380, 100));
-out("assets/logo/9sprints-logo-white.svg", wrapSvg(markInner("#FFFFFF") + word("#FFFFFF"), 380, 100));
-out("assets/icons/favicon.svg", wrapSvg(`<g transform="translate(6 6) scale(.88)">${markInner("#FFFFFF")}</g>`, 100, 100, '<rect width="100" height="100" rx="22" fill="#011A39"/>'));
 
 // ---------- placeholder imagery (swap for real WebP) ----------
 const names = ["hero-1","hero-2","hero-3","svc-1","svc-2","svc-3","svc-4","case-1","case-2","case-3","case-4","blog-1","blog-2","blog-3","ind-1","ind-2","ind-3","ind-4","ind-5","ind-6","ind-7","av-1","av-2","av-3","av-4","og"];

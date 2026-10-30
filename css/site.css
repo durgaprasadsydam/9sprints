@@ -569,6 +569,7 @@ a{color:inherit;text-decoration:none}
 @media (prefers-reduced-motion:reduce){.ftr-kick i,.ftr-live{animation:none}}
 
 .ftr-soc-brand{margin-top:0}
+.ftr-soc[hidden]{display:none}
 .ftr-addr address{font-style:normal;color:rgba(255,255,255,.62);font-size:.95rem;line-height:1.6}
 .ftr-top h2{max-width:none;font-size:clamp(2rem,4.4vw,4.3rem)}
 .ftr-top h2 .l{display:block}
@@ -748,3 +749,8 @@ a.sv:hover .sv-img img{transform:scale(1.06)}
 .ftr-word{position:relative;padding-bottom:.2em}
 .ftr-word span{position:relative;display:inline-block;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.3);cursor:default}
 .ftr-word .ftr-smoke{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.ftr-note{margin:24px 0 0;max-width:46ch;font-size:1.1rem;line-height:1.6;color:rgba(255,255,255,.7)}
+.sv-fin{grid-column:1 / -1;flex-direction:row;flex-wrap:wrap;align-items:center;gap:12px clamp(20px,3vw,48px)}
+.sv-fin .sv-hd{order:3;margin-left:auto}
+.sv-fin h3{margin:0}
+.sv-fin p{margin:0;flex:1 1 280px}

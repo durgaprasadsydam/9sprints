@@ -86,4 +86,25 @@ main{--accent:var(--ca,#0252f1)}
 .sv-eng-v p{color:#fff;font-weight:500}
 .sv-eng-link{margin-top:auto;align-self:flex-start;position:relative;padding-bottom:4px;font:600 .95rem var(--font-body);color:#fff;text-decoration:none;background:linear-gradient(90deg,#7fd8ff,#45eaae) left bottom/100% 1.5px no-repeat;transition:background-size .4s,color .3s}
 .sv-eng-link:hover{background-size:100% 100%;color:#011a39}
+.ab-eng-list.sv-eng-3:has(.sv-eng-card){grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:1000px){.ab-eng-list.sv-eng-3:has(.sv-eng-card){grid-template-columns:1fr}}
 @media (max-width:760px){.ab-eng-list:has(.sv-eng-card){grid-template-columns:1fr}.sv-eng-card{min-height:0}.sv-eng-card h3{max-width:none;padding-right:80px}}
+/* how we work */
+.hw-table{width:100%;border-collapse:collapse;font-size:clamp(1rem,1.3vw,1.15rem)}
+.hw-table th{padding:0 20px 16px;text-align:left;font:600 .78rem var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hw-table td{padding:22px 20px;border-top:1px solid var(--line);color:var(--muted)}
+.hw-table td:first-child{font:600 clamp(1.2rem,1.8vw,1.6rem) var(--font-display);letter-spacing:-.02em;color:var(--ink)}
+.hw-table td:nth-child(2){white-space:nowrap;color:var(--accent);font-weight:600}
+.hw-table tr:last-child td{border-bottom:1px solid var(--line)}
+.hw-sig{margin:0;font:600 clamp(1.3rem,2.2vw,1.9rem)/1.2 var(--font-display);letter-spacing:-.02em;color:var(--accent)}
+@media (max-width:640px){.hw-table th,.hw-table td{padding-inline:10px}.hw-table td:nth-child(2){white-space:normal}}
+/* three-up steps and "why work with us" cards */
+.sv-steps-3{grid-template-columns:repeat(3,1fr)}
+.sv-why{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.4vw,18px)}
+.sv-why-i{display:flex;flex-direction:column;gap:10px;padding:clamp(24px,2.4vw,34px);border-radius:26px;background:var(--soft);border:1px solid var(--line);transition:transform .6s cubic-bezier(.22,1,.36,1),box-shadow .6s,border-color .4s}
+.sv-why-i:hover{transform:translateY(-6px);border-color:color-mix(in srgb,var(--c2) 45%,transparent);box-shadow:0 30px 50px -30px var(--c1)}
+.sv-why-ico{display:grid;place-items:center;width:52px;height:52px;margin-bottom:clamp(20px,3vw,40px);border-radius:16px;background:#fff;color:var(--c1);box-shadow:0 8px 24px -12px rgba(11,27,51,.3)}
+.sv-why-i h3{margin:0;font:600 clamp(1.25rem,1.7vw,1.5rem)/1.2 var(--font-display);letter-spacing:-.02em}
+.sv-why-i p{margin:0;font-size:.98rem;line-height:1.55;color:var(--muted)}
+@media (max-width:1000px){.sv-steps-3,.sv-why{grid-template-columns:1fr}}
+

@@ -54,7 +54,7 @@
 
   // staggered fade-up for grouped cards
   if (!calm && typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
-    ["#ab-vals .ab-val", "#why-vals .ab-val", "#ab-gap .ab-gap-row", "#ab-eng .ab-row", "#ab-eng .sv-eng-card", "#ab-acc .ab-pn"].forEach((sel) => {
+    ["#ab-vals .ab-val", "#why-vals .ab-val", "#tech-vals .ab-val", "#ab-gap .ab-gap-row", "#ab-eng .ab-row", "#ab-eng .sv-eng-card", "#ab-acc .ab-pn"].forEach((sel) => {
       const els = gsap.utils.toArray(sel);
       if (!els.length) return;
       gsap.set(els, { opacity: 0, y: 40 });

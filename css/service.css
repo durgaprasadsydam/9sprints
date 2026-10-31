@@ -1,5 +1,7 @@
 /* ---------- Service inner pages (builds on css/site.css + css/about.css) ---------- */
 main{--accent:var(--ca,#0252f1)}
+/* keep sections above the hero's fade-out gradient, which extends below the hero */
+main > section:not(.hero){position:relative;z-index:1}
 .ab-hero.sv-hero h1{max-width:80%}
 .sv-hero .sub-copy{max-width:56ch}
 .nav-parent.is-current::after{transform:scaleX(1)}
